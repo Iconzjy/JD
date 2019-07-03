@@ -2,6 +2,8 @@ package com.springmvc.dao;
 
 import com.springmvc.entity.Shop;
 
+import java.util.List;
+
 public interface ShopMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,5 @@ public interface ShopMapper {
     int updateByPrimaryKeySelective(Shop record);
 
     int updateByPrimaryKey(Shop record);
+
 }

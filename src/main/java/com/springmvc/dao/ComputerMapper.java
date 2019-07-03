@@ -2,6 +2,8 @@ package com.springmvc.dao;
 
 import com.springmvc.entity.Computer;
 
+import java.util.List;
+
 public interface ComputerMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface ComputerMapper {
     int updateByPrimaryKeySelective(Computer record);
 
     int updateByPrimaryKey(Computer record);
+
+    List<Computer> selectByShoppingName(String name);
 }

@@ -185,4 +185,12 @@
       imgURL = #{imgurl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByShoppingName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from computer
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

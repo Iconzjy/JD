@@ -20,16 +20,17 @@ public class UserMapperTest {
         applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");
         userMapper = applicationContext.getBean(UserMapper.class);
     }
-    @Test
-    public void insert() {
-        User user = new User();
-        user.setId(2);
-        user.setName("zeng");
-        user.setPwd(123);
-        userMapper.insertSelective(user);
-    }
+
+
 
     @Test
     public void insertSelective() {
+        User user = userMapper.selectByPrimaryKey(1);
+        System.out.println(user.getId()+" "+user.getName()+" "+user.getPwd());
+        userMapper.deleteByPrimaryKey(2);
+    }
+
+    @Test
+    public void selectByPrimaryKey() {
     }
 }

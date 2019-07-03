@@ -5,7 +5,13 @@ public class User {
 
     private String name;
 
-    private Integer pwd;
+    private String pwd;
+
+    private Integer type;
+
+    private String email;
+
+    private Integer phone;
 
     public Integer getId() {
         return id;
@@ -23,11 +29,35 @@ public class User {
         this.name = name;
     }
 
-    public Integer getPwd() {
+    public String getPwd() {
         return pwd;
     }
 
-    public void setPwd(Integer pwd) {
+    public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Integer phone) {
+        this.phone = phone;
     }
 }
