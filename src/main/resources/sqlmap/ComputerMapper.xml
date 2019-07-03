@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.dao.ComputerMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.entity.Computer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="REAL" />
+    <result column="CPU" property="cpu" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="REAL" />
+    <result column="productlocation" property="productlocation" jdbcType="VARCHAR" />
+    <result column="GPU" property="gpu" jdbcType="VARCHAR" />
+    <result column="istouch" property="istouch" jdbcType="BIT" />
+    <result column="thickness" property="thickness" jdbcType="REAL" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="imgURL" property="imgurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, size, CPU, color, version, weight, productlocation, GPU, istouch, thickness, 
+    type, imgURL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from computer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from computer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springmvc.entity.Computer" >
+    insert into computer (id, name, size, 
+      CPU, color, version, 
+      weight, productlocation, GPU, 
+      istouch, thickness, type, 
+      imgURL)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{size,jdbcType=REAL}, 
+      #{cpu,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=REAL}, #{productlocation,jdbcType=VARCHAR}, #{gpu,jdbcType=VARCHAR}, 
+      #{istouch,jdbcType=BIT}, #{thickness,jdbcType=REAL}, #{type,jdbcType=VARCHAR}, 
+      #{imgurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springmvc.entity.Computer" >
+    insert into computer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="cpu != null" >
+        CPU,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="productlocation != null" >
+        productlocation,
+      </if>
+      <if test="gpu != null" >
+        GPU,
+      </if>
+      <if test="istouch != null" >
+        istouch,
+      </if>
+      <if test="thickness != null" >
+        thickness,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="imgurl != null" >
+        imgURL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=REAL},
+      </if>
+      <if test="cpu != null" >
+        #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=REAL},
+      </if>
+      <if test="productlocation != null" >
+        #{productlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="gpu != null" >
+        #{gpu,jdbcType=VARCHAR},
+      </if>
+      <if test="istouch != null" >
+        #{istouch,jdbcType=BIT},
+      </if>
+      <if test="thickness != null" >
+        #{thickness,jdbcType=REAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.entity.Computer" >
+    update computer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=REAL},
+      </if>
+      <if test="cpu != null" >
+        CPU = #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=REAL},
+      </if>
+      <if test="productlocation != null" >
+        productlocation = #{productlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="gpu != null" >
+        GPU = #{gpu,jdbcType=VARCHAR},
+      </if>
+      <if test="istouch != null" >
+        istouch = #{istouch,jdbcType=BIT},
+      </if>
+      <if test="thickness != null" >
+        thickness = #{thickness,jdbcType=REAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        imgURL = #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.entity.Computer" >
+    update computer
+    set name = #{name,jdbcType=VARCHAR},
+      size = #{size,jdbcType=REAL},
+      CPU = #{cpu,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=REAL},
+      productlocation = #{productlocation,jdbcType=VARCHAR},
+      GPU = #{gpu,jdbcType=VARCHAR},
+      istouch = #{istouch,jdbcType=BIT},
+      thickness = #{thickness,jdbcType=REAL},
+      type = #{type,jdbcType=VARCHAR},
+      imgURL = #{imgurl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

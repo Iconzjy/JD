@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.entity.Order" >
+    <id column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="orderuser" property="orderuser" jdbcType="INTEGER" />
+    <result column="ordername" property="ordername" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="trading" property="trading" jdbcType="VARCHAR" />
+    <result column="ordertime" property="ordertime" jdbcType="TIMESTAMP" />
+    <result column="orderstate" property="orderstate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderid, orderuser, ordername, consignee, trading, ordertime, orderstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springmvc.entity.Order" >
+    insert into order (orderid, orderuser, ordername, 
+      consignee, trading, ordertime, 
+      orderstate)
+    values (#{orderid,jdbcType=INTEGER}, #{orderuser,jdbcType=INTEGER}, #{ordername,jdbcType=VARCHAR}, 
+      #{consignee,jdbcType=VARCHAR}, #{trading,jdbcType=VARCHAR}, #{ordertime,jdbcType=TIMESTAMP}, 
+      #{orderstate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springmvc.entity.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="orderuser != null" >
+        orderuser,
+      </if>
+      <if test="ordername != null" >
+        ordername,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="trading != null" >
+        trading,
+      </if>
+      <if test="ordertime != null" >
+        ordertime,
+      </if>
+      <if test="orderstate != null" >
+        orderstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderuser != null" >
+        #{orderuser,jdbcType=INTEGER},
+      </if>
+      <if test="ordername != null" >
+        #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="trading != null" >
+        #{trading,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertime != null" >
+        #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderstate != null" >
+        #{orderstate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.entity.Order" >
+    update order
+    <set >
+      <if test="orderuser != null" >
+        orderuser = #{orderuser,jdbcType=INTEGER},
+      </if>
+      <if test="ordername != null" >
+        ordername = #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="trading != null" >
+        trading = #{trading,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertime != null" >
+        ordertime = #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderstate != null" >
+        orderstate = #{orderstate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.entity.Order" >
+    update order
+    set orderuser = #{orderuser,jdbcType=INTEGER},
+      ordername = #{ordername,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      trading = #{trading,jdbcType=VARCHAR},
+      ordertime = #{ordertime,jdbcType=TIMESTAMP},
+      orderstate = #{orderstate,jdbcType=VARCHAR}
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.dao.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.entity.Shop" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="evaluate" property="evaluate" jdbcType="INTEGER" />
+    <result column="getproductdate" property="getproductdate" jdbcType="DATE" />
+    <result column="score" property="score" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, brand, price, evaluate, getproductdate, score
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springmvc.entity.Shop" >
+    insert into shop (id, type, brand, 
+      price, evaluate, getproductdate, 
+      score)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{evaluate,jdbcType=INTEGER}, #{getproductdate,jdbcType=DATE}, 
+      #{score,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springmvc.entity.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="brand != null" >
+        brand,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="evaluate != null" >
+        evaluate,
+      </if>
+      <if test="getproductdate != null" >
+        getproductdate,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="evaluate != null" >
+        #{evaluate,jdbcType=INTEGER},
+      </if>
+      <if test="getproductdate != null" >
+        #{getproductdate,jdbcType=DATE},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.entity.Shop" >
+    update shop
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="evaluate != null" >
+        evaluate = #{evaluate,jdbcType=INTEGER},
+      </if>
+      <if test="getproductdate != null" >
+        getproductdate = #{getproductdate,jdbcType=DATE},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.entity.Shop" >
+    update shop
+    set type = #{type,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      evaluate = #{evaluate,jdbcType=INTEGER},
+      getproductdate = #{getproductdate,jdbcType=DATE},
+      score = #{score,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

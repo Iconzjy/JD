@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.dao.ShoppingcartMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.entity.Shoppingcart" >
+    <id column="primarykey" property="primarykey" jdbcType="INTEGER" />
+    <result column="shoppingid" property="shoppingid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="allprice" property="allprice" jdbcType="DOUBLE" />
+    <result column="trading" property="trading" jdbcType="VARCHAR" />
+    <result column="freight" property="freight" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    primarykey, shoppingid, userid, number, price, allprice, trading, freight
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shoppingcart
+    where primarykey = #{primarykey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shoppingcart
+    where primarykey = #{primarykey,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springmvc.entity.Shoppingcart" >
+    insert into shoppingcart (primarykey, shoppingid, userid, 
+      number, price, allprice, 
+      trading, freight)
+    values (#{primarykey,jdbcType=INTEGER}, #{shoppingid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{number,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{allprice,jdbcType=DOUBLE}, 
+      #{trading,jdbcType=VARCHAR}, #{freight,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springmvc.entity.Shoppingcart" >
+    insert into shoppingcart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="primarykey != null" >
+        primarykey,
+      </if>
+      <if test="shoppingid != null" >
+        shoppingid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="allprice != null" >
+        allprice,
+      </if>
+      <if test="trading != null" >
+        trading,
+      </if>
+      <if test="freight != null" >
+        freight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="primarykey != null" >
+        #{primarykey,jdbcType=INTEGER},
+      </if>
+      <if test="shoppingid != null" >
+        #{shoppingid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="allprice != null" >
+        #{allprice,jdbcType=DOUBLE},
+      </if>
+      <if test="trading != null" >
+        #{trading,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null" >
+        #{freight,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.entity.Shoppingcart" >
+    update shoppingcart
+    <set >
+      <if test="shoppingid != null" >
+        shoppingid = #{shoppingid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="allprice != null" >
+        allprice = #{allprice,jdbcType=DOUBLE},
+      </if>
+      <if test="trading != null" >
+        trading = #{trading,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null" >
+        freight = #{freight,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where primarykey = #{primarykey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.entity.Shoppingcart" >
+    update shoppingcart
+    set shoppingid = #{shoppingid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      allprice = #{allprice,jdbcType=DOUBLE},
+      trading = #{trading,jdbcType=VARCHAR},
+      freight = #{freight,jdbcType=DOUBLE}
+    where primarykey = #{primarykey,jdbcType=INTEGER}
+  </update>
+</mapper>
