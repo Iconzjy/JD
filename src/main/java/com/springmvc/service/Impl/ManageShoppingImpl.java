@@ -18,7 +18,7 @@ public class ManageShoppingImpl implements ManageShopping {
     ComputerMapper computerMapper;
 
     @Override
-    public List<Pair<Shop, Computer>> findShopping(String shoppingName) throws Exception {
+    public List<Pair<Shop, Computer>> findShopping(String shoppingName) {
         try{
             List<Pair<Shop, Computer>> pairList=new LinkedList<>();
             List<Computer> computerList=computerMapper.selectByShoppingName(shoppingName);
@@ -37,12 +37,12 @@ public class ManageShoppingImpl implements ManageShopping {
     }
 
     @Override
-    public Shop selectShopByid(int id) throws Exception {
+    public Shop selectShopByid(int id) {
         return shopMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public String addShopping(Shop shop, Computer computer) throws Exception {
+    public String addShopping(Shop shop, Computer computer){
         try {
             if(shop.getId().equals("")&&computer.getId().equals(""))
                 return "主键不能为空";
@@ -57,7 +57,7 @@ public class ManageShoppingImpl implements ManageShopping {
     }
 
     @Override
-    public String deleteShopping(int shoppingID) throws Exception {
+    public String deleteShopping(int shoppingID) {
         try {
             shopMapper.deleteByPrimaryKey(shoppingID);
             computerMapper.deleteByPrimaryKey(shoppingID);

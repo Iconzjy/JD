@@ -13,7 +13,7 @@ public class ManageOrderImpl implements ManageOrder {
     OrderMapper orderMapper;
 
     @Override
-    public String addOrder(Order order) throws Exception{
+    public String addOrder(Order order){
         try{
             orderMapper.insertSelective(order);
             return "添加成功";
@@ -25,7 +25,7 @@ public class ManageOrderImpl implements ManageOrder {
     }
 
     @Override
-    public String deleteOrder(int orderid)throws Exception{
+    public String deleteOrder(int orderid){
         try{
             orderMapper.deleteByPrimaryKey(orderid);
             return "删除成功";

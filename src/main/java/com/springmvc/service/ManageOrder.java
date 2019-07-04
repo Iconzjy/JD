@@ -6,10 +6,10 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 public interface ManageOrder {
 
     //添加订单
-    String addOrder(Order order) throws Exception ;
+    String addOrder(Order order);
 
     //删除订单记录
-    String deleteOrder(int orderid) throws Exception ;
+    String deleteOrder(int orderid);
 
 
 

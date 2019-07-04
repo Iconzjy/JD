@@ -16,7 +16,7 @@ public class ManageUserImpl implements ManageUser {
     AddressMapper addressMapper;
 
     @Override
-    public String registUser(User user) throws Exception {
+    public String registUser(User user){
         try {
             userMapper.insertSelective(user);
             return "注册成功";
@@ -28,7 +28,7 @@ public class ManageUserImpl implements ManageUser {
     }
 
     @Override
-    public String deleteUser(int id) throws Exception {
+    public String deleteUser(int id){
         try {
             userMapper.deleteByPrimaryKey(id);
             return "注销成功";
@@ -40,7 +40,7 @@ public class ManageUserImpl implements ManageUser {
     }
 
     @Override
-    public String updataUser(int id, User user,Address address) throws Exception {
+    public String updataUser(int id, User user,Address address){
         try {
             userMapper.updateByPrimaryKeySelective(user);
             addressMapper.updateByPrimaryKeySelective(address);
@@ -55,11 +55,23 @@ public class ManageUserImpl implements ManageUser {
     }
 
     @Override
-    public boolean login(int id, String pwd) throws Exception {
+    public boolean login(int id, String pwd) {
         if(userMapper.selectByPrimaryKey(id).getPwd().equals(pwd)){
             return true;
         }else {
             return false;
         }
+    }
+
+    @Override
+    public boolean isExit(int id) {
+        if(userMapper.selectByPrimaryKey(id)==null)
+            return false;
+        return true;
+    }
+
+    @Override
+    public User getUser(int id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 }
