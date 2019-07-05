@@ -13,6 +13,7 @@ public class ManageUserImpl implements ManageUser {
 
     @Autowired
     UserMapper userMapper;
+    @Autowired
     AddressMapper addressMapper;
 
     @Override

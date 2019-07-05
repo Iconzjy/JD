@@ -1,6 +1,9 @@
 package com.springmvc.entity;
 
+import java.util.List;
+
 public class Shoppingcart {
+
     private Integer primarykey;
 
     private Integer shoppingid;
@@ -16,6 +19,7 @@ public class Shoppingcart {
     private String trading;
 
     private Double freight;
+
 
     public Integer getPrimarykey() {
         return primarykey;
@@ -80,4 +84,6 @@ public class Shoppingcart {
     public void setFreight(Double freight) {
         this.freight = freight;
     }
+
+
 }

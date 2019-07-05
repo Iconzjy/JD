@@ -13,7 +13,7 @@ public interface ManageShopping {
     List<Pair<Shop,Computer>> findShopping(String shoppingName) ;
 
     //这个是返回shop表的信息，因为每一个Computer都对应一个shop的值，shop是所有商品的公共部分
-    Shop selectShopByid(int id)throws Exception;
+    Shop selectShopByid(int id);
 
     //添加商品
     String addShopping(Shop shop, Computer computer);

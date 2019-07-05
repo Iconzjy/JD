@@ -1,7 +1,10 @@
 package com.springmvc.controller;
 
 
+import com.springmvc.entity.Address;
 import com.springmvc.entity.User;
+import com.springmvc.entity.UserAndAddress;
+import com.springmvc.service.ManageAddress;
 import com.springmvc.service.ManageUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,8 @@ import java.io.PrintWriter;
 public class UserController {
     @Autowired
     private ManageUser manageUser;
+    @Autowired
+    private ManageAddress manageAddress;
     User myuser = new User();
 
     @RequestMapping(value = "/firtPage")
@@ -46,27 +51,23 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userlogin",method = {RequestMethod.POST,RequestMethod.GET})
-    public ModelAndView login(String id, String pwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ModelAndView login( HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setCharacterEncoding("utf-8");
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView();
+
+        String id,pwd;
         id = request.getParameter("userName");
         pwd = request.getParameter("password");
         boolean b=manageUser.login(Integer.parseInt(id),pwd);
         if(b){
             //登录成功
+            mav.setViewName("index");
             myuser=manageUser.getUser(Integer.parseInt(id));
             mav.addObject("user",myuser);
             return mav;
         }
-
-        else {
-            PrintWriter out;
-            out=response.getWriter();
-            out.print("<script>alert('login failed');window.location.href='denglu';</script>");
-            out.close();
-            mav.setViewName("login");
-            return mav;
-        }
+        mav.setViewName("login");
+        return mav;
     }
 
 
@@ -79,7 +80,7 @@ public class UserController {
         String password = request.getParameter("password");
         String password1 = request.getParameter("password1");
         String checkcode = request.getParameter("checkcode");
-        if(!checkcode.equals("3EHM")){
+        if(!checkcode.equals("3EHM")&&!checkcode.equals("5ACY")){
             //验证码错误页面
             PrintWriter out;
             out=response.getWriter();
@@ -113,9 +114,40 @@ public class UserController {
         manageUser.registUser(user);
         PrintWriter out;
         out=response.getWriter();
-        out.print("<script>alert('success');window.location.href='firtPage';</script>");
-        out.close();
-        mav.setViewName("test");
+        out.print("<script>alert('success');</script>");
+//        out.close();
+        mav.setViewName("index");
+        mav.addObject("user",user);
+        return mav;
+    }
+
+    @RequestMapping(value = "/changeuserinfo",method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView changeuserinfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int userid=Integer.parseInt(request.getParameter("user_id"));
+        User user = manageUser.getUser(userid);
+        Address address = manageAddress.getAddressByid(userid);
+        UserAndAddress userAndAddress=new UserAndAddress(user,address);
+
+        ModelAndView mav = new ModelAndView("user");
+        mav.addObject("user",user);
+        mav.addObject("userAndAddress",userAndAddress);
+        return mav;
+    }
+
+    @RequestMapping(value = "/submitchangeuserinfo",method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView submitchangeuserinfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int userid=Integer.parseInt(request.getParameter("user_id"));
+        User user = manageUser.getUser(userid);
+        String phone= request.getParameter("myphone");
+        String name=request.getParameter("myname");
+        user.setName(name);
+        user.setPhone(Integer.parseInt(phone));
+        Address address = manageAddress.getAddressByid(userid);
+        manageUser.updataUser(userid,user,address);
+        UserAndAddress userAndAddress=new UserAndAddress(user,address);
+        ModelAndView mav = new ModelAndView("user");
+        mav.addObject("user",user);
+        mav.addObject("userAndAddress",userAndAddress);
         return mav;
     }
 }

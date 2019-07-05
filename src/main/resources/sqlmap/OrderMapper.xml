@@ -24,12 +24,7 @@
     where orderid = #{orderid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.springmvc.entity.Order" >
-    insert into order (orderid, orderuser, ordername, 
-      consignee, trading, ordertime, 
-      orderstate)
-    values (#{orderid,jdbcType=INTEGER}, #{orderuser,jdbcType=INTEGER}, #{ordername,jdbcType=VARCHAR}, 
-      #{consignee,jdbcType=VARCHAR}, #{trading,jdbcType=VARCHAR}, #{ordertime,jdbcType=TIMESTAMP}, 
-      #{orderstate,jdbcType=VARCHAR})
+    insert into order (orderid, orderuser, ordername,consignee, trading, ordertime,orderstate) values (#{orderid,jdbcType=INTEGER}, #{orderuser,jdbcType=INTEGER}, #{ordername,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{trading,jdbcType=VARCHAR}, #{ordertime,jdbcType=TIMESTAMP}, #{orderstate,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.springmvc.entity.Order" >
     insert into order

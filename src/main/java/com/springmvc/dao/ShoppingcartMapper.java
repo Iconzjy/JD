@@ -2,6 +2,8 @@ package com.springmvc.dao;
 
 import com.springmvc.entity.Shoppingcart;
 
+import java.util.List;
+
 public interface ShoppingcartMapper {
     int deleteByPrimaryKey(Integer primarykey);
 
@@ -14,4 +16,6 @@ public interface ShoppingcartMapper {
     int updateByPrimaryKeySelective(Shoppingcart record);
 
     int updateByPrimaryKey(Shoppingcart record);
+
+    List<Shoppingcart> selectByUserid(int userid);
 }

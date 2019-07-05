@@ -15,6 +15,7 @@ import java.util.*;
 public class ManageShoppingImpl implements ManageShopping {
     @Autowired
     ShopMapper shopMapper;
+    @Autowired
     ComputerMapper computerMapper;
 
     @Override
